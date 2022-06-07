@@ -15,6 +15,7 @@ export default class GamePlay {
     this.newGameListeners = [];
     this.saveGameListeners = [];
     this.loadGameListeners = [];
+    this.arrCharacter = [];
   }
 
   bindToDOM(container) {
@@ -56,7 +57,7 @@ export default class GamePlay {
     this.boardEl.classList.add(theme);
     for (let i = 0; i < this.boardSize ** 2; i += 1) {
       const cellEl = document.createElement('div');
-      cellEl.classList.add('cell', 'map-tile', `map-tile-${calcTileType(i, this.boardSize)}`);
+      cellEl.classList.add('cell', `${i}`, 'map-tile', `map-tile-${calcTileType(i, this.boardSize)}`);
       cellEl.addEventListener('mouseenter', event => this.onCellEnter(event));
       cellEl.addEventListener('mouseleave', event => this.onCellLeave(event));
       cellEl.addEventListener('click', event => this.onCellClick(event));
@@ -72,6 +73,7 @@ export default class GamePlay {
    * @param positions array of PositionedCharacter objects
    */
   redrawPositions(positions) {
+    this.arrCharacter = positions;
     for (const cell of this.cells) {
       cell.innerHTML = '';
     }
@@ -149,9 +151,9 @@ export default class GamePlay {
   }
 
   onCellEnter(event) {
-    event.preventDefault();
+    // event.preventDefault();
     const index = this.cells.indexOf(event.currentTarget);
-      this.cellEnterListeners.forEach(o => o.call(null, index));
+    this.cellEnterListeners.forEach(o => o.call(null, index));
   }
 
   onCellLeave(event) {
@@ -161,7 +163,9 @@ export default class GamePlay {
   }
 
   onCellClick(event) {
+
     const index = this.cells.indexOf(event.currentTarget);
+
     this.cellClickListeners.forEach(o => o.call(null, index));
   }
 
@@ -180,7 +184,7 @@ export default class GamePlay {
     this.loadGameListeners.forEach(o => o.call(null));
   }
 
-  static showError(message) {
+   showError(message) {
     alert(message);
   }
 

@@ -27,7 +27,7 @@ export function generateTeam(allowedTypes, maxLevel, characterCount) {
 
   for (let i = 0; i < 63; i++) {
     if (i % 8 == 0 || i % 8 == 1) {
-      arrPlayerBoard.push(i)
+      arrPlayerBoard.push(27) // заменил на i
     }
     if (i % 8 == 7 || i % 8 == 6) {
       arrComputerBoard.push(i)
@@ -35,13 +35,13 @@ export function generateTeam(allowedTypes, maxLevel, characterCount) {
   }
 
   function generatorPlayer(characterCount) {
-    for (let i = 0; i < characterCount; i++) {
+    for (let i = 0; i < 1; i++) { // заменил на 1 characterCount
       let randomCharcter = allowedTypes[random(0, 2)];
       let positionCharcter = arrPlayerBoard[random(0, arrPlayerBoard.length - 1)];
       result.forEach(item => {
         if (item[1] == positionCharcter) {
-          arrPlayerBoard.splice(arrPlayerBoard.indexOf(positionCharcter), 1);
-          positionCharcter = arrPlayerBoard[random(0, arrPlayerBoard.length - 1)];
+          arrPlayerBoard.splice(arrPlayerBoard.indexOf(positionCharcter), 1); 
+          positionCharcter = arrPlayerBoard[random(0, arrPlayerBoard.length - 1)]; 
         }
       });
       result.push([randomCharcter, positionCharcter]);

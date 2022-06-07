@@ -10,7 +10,7 @@ import {
 
 export default class Team {
   constructor() {
-    this.allowedTypes = [new Bowerman(1), new Magician(1), new Swordsman(1), new Daemon(1), new Undead(1), new Vampire(1)];
+    this.allowedTypes = [new Bowerman(), new Magician(), new Swordsman(), new Daemon(), new Undead(), new Vampire()];
   }
 
   generateTeam() {
